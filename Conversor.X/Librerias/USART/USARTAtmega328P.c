@@ -7,14 +7,15 @@
 
 
 
+#define F_CPU 16000000
 #include "USARTAtmega328P.h"
 #include <xc.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdbool.h>
 #include <stdint.h>
-
-
+#include <string.h>
+#include <util/delay.h>
 #define BAUD_RATE_9600_BPS  71  // 9600bps
 #define BAUD_RATE_115200_BPS  5 // 115.2k bps
 #define FOSC 16000000
@@ -47,6 +48,29 @@ void USART_SetArrayData(char *ArrayTx, int len)
 }
 unsigned char USART_GetData()
 {
-	while(!(UCSR0A & (1<<RXC0)));
+    int ccont = 0;
+	while(!(UCSR0A & (1<<RXC0)) && ccont < 4){
+        _delay_ms(500);
+        ccont++;
+         USART_SetData('.');
+    };
+    
 	return UDR0;	
+}
+void USART_GetIntData(bool *buffer,volatile uint16_t *valor)
+{   
+    int x = 0;
+	int _rx[3];
+    *buffer = false;
+    for(int i = 1; i <= 3; i++){
+        while(!(UCSR0A & (1<<RXC0)));
+        _rx[i] = UDR0;
+        if(i <= 2){
+          x = (x + (_rx[i] - '0'))*10;
+        }else{
+          x = (x + (_rx[i] - '0')) ;
+        }
+        *buffer = true;
+    }
+    *valor = x;
 }

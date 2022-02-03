@@ -1,4 +1,6 @@
-build/default/production/main.o.d build/default/production/main.o: main.c \
+build/default/production/Librerias/PCINT/PCINT.o.d \
+ build/default/production/Librerias/PCINT/PCINT.o: \
+ Librerias/PCINT/PCINT.c Librerias/PCINT/PCINT.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h \
@@ -12,17 +14,9 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\version.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h \
- c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdio.h \
- c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
- c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h \
- c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h \
- Librerias/INT/INT.h Librerias/TIMER0/TIMER0.h Librerias/PCINT/PCINT.h \
- Librerias/TIMER1/TIMER1.h Librerias/USART/USARTAtmega328P.h
+ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h
+
+Librerias/PCINT/PCINT.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h:
 
@@ -51,29 +45,3 @@ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\fuse.h:
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\lock.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\interrupt.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdbool.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdio.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h:
-
-Librerias/INT/INT.h:
-
-Librerias/TIMER0/TIMER0.h:
-
-Librerias/PCINT/PCINT.h:
-
-Librerias/TIMER1/TIMER1.h:
-
-Librerias/USART/USARTAtmega328P.h:

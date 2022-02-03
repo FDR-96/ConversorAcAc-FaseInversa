@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c
+SOURCEFILES_QUOTED_IF_SPACED=Librerias/ADC/ADC.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c Librerias/WTD/WATCHDOG.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Librerias/ADC/ADC.o.d ${OBJECTDIR}/Librerias/INT/INT.o.d ${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d ${OBJECTDIR}/Librerias/PCINT/PCINT.o.d ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o
+OBJECTFILES=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o
 
 # Source Files
-SOURCEFILES=main.c
+SOURCEFILES=Librerias/ADC/ADC.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c Librerias/WTD/WATCHDOG.c
 
 
 
@@ -94,18 +94,114 @@ MP_PROCESSOR_OPTION=ATmega328P
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/Librerias/ADC/ADC.o: Librerias/ADC/ADC.c  .generated_files/flags/default/dc3d254f828ac4a54ae89cfd7a40c9463ea29155 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/ADC" 
+	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT ${OBJECTDIR}/Librerias/ADC/ADC.o -o ${OBJECTDIR}/Librerias/ADC/ADC.o Librerias/ADC/ADC.c 
+	
+${OBJECTDIR}/Librerias/INT/INT.o: Librerias/INT/INT.c  .generated_files/flags/default/8b608e69cda59691098112087c11ecd074fb915 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/INT" 
+	@${RM} ${OBJECTDIR}/Librerias/INT/INT.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/INT/INT.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/INT/INT.o.d" -MT "${OBJECTDIR}/Librerias/INT/INT.o.d" -MT ${OBJECTDIR}/Librerias/INT/INT.o -o ${OBJECTDIR}/Librerias/INT/INT.o Librerias/INT/INT.c 
+	
+${OBJECTDIR}/Librerias/MAX7219/Max7219.o: Librerias/MAX7219/Max7219.c  .generated_files/flags/default/6070e2017acb20ff2039c537cf1951f11495d815 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/MAX7219" 
+	@${RM} ${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/MAX7219/Max7219.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d" -MT "${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d" -MT ${OBJECTDIR}/Librerias/MAX7219/Max7219.o -o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o Librerias/MAX7219/Max7219.c 
+	
+${OBJECTDIR}/Librerias/PCINT/PCINT.o: Librerias/PCINT/PCINT.c  .generated_files/flags/default/952dbd9cdad0299f52adf3d006f69099515a6181 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/PCINT" 
+	@${RM} ${OBJECTDIR}/Librerias/PCINT/PCINT.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/PCINT/PCINT.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/PCINT/PCINT.o.d" -MT "${OBJECTDIR}/Librerias/PCINT/PCINT.o.d" -MT ${OBJECTDIR}/Librerias/PCINT/PCINT.o -o ${OBJECTDIR}/Librerias/PCINT/PCINT.o Librerias/PCINT/PCINT.c 
+	
+${OBJECTDIR}/Librerias/TIMER0/TIMER0.o: Librerias/TIMER0/TIMER0.c  .generated_files/flags/default/a1a02a07e8fb363e2f9490065ee6ad708d05ed43 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/TIMER0" 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d" -MT "${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d" -MT ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o -o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o Librerias/TIMER0/TIMER0.c 
+	
+${OBJECTDIR}/Librerias/TIMER1/TIMER1.o: Librerias/TIMER1/TIMER1.c  .generated_files/flags/default/1cada28a8d4ffb1959b4344ea6d8490b76601216 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/TIMER1" 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d" -MT "${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d" -MT ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o -o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o Librerias/TIMER1/TIMER1.c 
+	
+${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o: Librerias/USART/USARTAtmega328P.c  .generated_files/flags/default/3532701e641c86c2500429d4ec819d0de50ef197 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/USART" 
+	@${RM} ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d" -MT "${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d" -MT ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o -o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o Librerias/USART/USARTAtmega328P.c 
+	
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/c2cb458cb653ce5542bf3627e778d70e6a9bc37e .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/main.o.d" -MT "${OBJECTDIR}/main.o.d" -MT ${OBJECTDIR}/main.o -o ${OBJECTDIR}/main.o main.c 
 	
+${OBJECTDIR}/Librerias/WTD/WATCHDOG.o: Librerias/WTD/WATCHDOG.c  .generated_files/flags/default/8026c8c98a5d7aea397e0289d539bb6903376bbd .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/WTD" 
+	@${RM} ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d" -MT "${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d" -MT ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o -o ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o Librerias/WTD/WATCHDOG.c 
+	
 else
+${OBJECTDIR}/Librerias/ADC/ADC.o: Librerias/ADC/ADC.c  .generated_files/flags/default/a4b2fd06ffb6def0089f60f731127606f50cf090 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/ADC" 
+	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT ${OBJECTDIR}/Librerias/ADC/ADC.o -o ${OBJECTDIR}/Librerias/ADC/ADC.o Librerias/ADC/ADC.c 
+	
+${OBJECTDIR}/Librerias/INT/INT.o: Librerias/INT/INT.c  .generated_files/flags/default/fdbed1faddad856fd3b9e984ca18ca1cd3c7d750 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/INT" 
+	@${RM} ${OBJECTDIR}/Librerias/INT/INT.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/INT/INT.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/INT/INT.o.d" -MT "${OBJECTDIR}/Librerias/INT/INT.o.d" -MT ${OBJECTDIR}/Librerias/INT/INT.o -o ${OBJECTDIR}/Librerias/INT/INT.o Librerias/INT/INT.c 
+	
+${OBJECTDIR}/Librerias/MAX7219/Max7219.o: Librerias/MAX7219/Max7219.c  .generated_files/flags/default/e88bb201032b72be161ba6677feaa08145feb99e .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/MAX7219" 
+	@${RM} ${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/MAX7219/Max7219.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d" -MT "${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d" -MT ${OBJECTDIR}/Librerias/MAX7219/Max7219.o -o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o Librerias/MAX7219/Max7219.c 
+	
+${OBJECTDIR}/Librerias/PCINT/PCINT.o: Librerias/PCINT/PCINT.c  .generated_files/flags/default/4c9a0d949235aa8a9621d17f5a1f13ccbe281a5a .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/PCINT" 
+	@${RM} ${OBJECTDIR}/Librerias/PCINT/PCINT.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/PCINT/PCINT.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/PCINT/PCINT.o.d" -MT "${OBJECTDIR}/Librerias/PCINT/PCINT.o.d" -MT ${OBJECTDIR}/Librerias/PCINT/PCINT.o -o ${OBJECTDIR}/Librerias/PCINT/PCINT.o Librerias/PCINT/PCINT.c 
+	
+${OBJECTDIR}/Librerias/TIMER0/TIMER0.o: Librerias/TIMER0/TIMER0.c  .generated_files/flags/default/45928d669c970be0a1084122cf7664922571aee7 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/TIMER0" 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d" -MT "${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d" -MT ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o -o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o Librerias/TIMER0/TIMER0.c 
+	
+${OBJECTDIR}/Librerias/TIMER1/TIMER1.o: Librerias/TIMER1/TIMER1.c  .generated_files/flags/default/bc46e8af5e424123934792932b20346330b9efb0 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/TIMER1" 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d" -MT "${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d" -MT ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o -o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o Librerias/TIMER1/TIMER1.c 
+	
+${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o: Librerias/USART/USARTAtmega328P.c  .generated_files/flags/default/e9ce404e4db12c2894c43b9a18183962fb08286b .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/USART" 
+	@${RM} ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d" -MT "${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d" -MT ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o -o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o Librerias/USART/USARTAtmega328P.c 
+	
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/619c3a5edf0ef208d989c7c61de7171e35341760 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/main.o.d" -MT "${OBJECTDIR}/main.o.d" -MT ${OBJECTDIR}/main.o -o ${OBJECTDIR}/main.o main.c 
+	
+${OBJECTDIR}/Librerias/WTD/WATCHDOG.o: Librerias/WTD/WATCHDOG.c  .generated_files/flags/default/1c0de738a917ba83ff3aeace8c97eefbcd756c44 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/WTD" 
+	@${RM} ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d" -MT "${OBJECTDIR}/Librerias/WTD/WATCHDOG.o.d" -MT ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o -o ${OBJECTDIR}/Librerias/WTD/WATCHDOG.o Librerias/WTD/WATCHDOG.c 
 	
 endif
 

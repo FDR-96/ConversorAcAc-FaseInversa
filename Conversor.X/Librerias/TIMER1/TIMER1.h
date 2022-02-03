@@ -12,6 +12,6 @@
 	#include <avr/io.h>
 
 	void TIMER1_init();
-
-
+	void TIMER1_Stop();
+	void TIMER1_Start();
 #endif /* TIMER2_H_ */

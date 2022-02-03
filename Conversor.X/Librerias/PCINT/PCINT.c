@@ -7,10 +7,13 @@
 
 #include "PCINT.h"
 #include <xc.h>
-
+#include <avr/interrupt.h>
+#include <avr/io.h>
 void PCINT_init()
 {
-    PORTD |= (1<<PORTD2);
-    EICRA |= (1<<ISC00)|(1<<ISC01); // El flanco ascendente de INT1 genera una solicitud de interrupción.
-    EIMSK |= (1<<INT0);
+    DDRD &=~ (1<<5);
+	PORTD |= (1<<5);
+    // CONFIGURACIÓN DE INTERRUPCIONES
+	PCICR |= (1<<2);
+	PCMSK2 |= (1<<5);
 }
