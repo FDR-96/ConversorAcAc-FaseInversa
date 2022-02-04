@@ -58,6 +58,7 @@ void AjustarTensionDimmerRemoto();
 void MostrarNumero(uint16_t numero, uint8_t digitos);  //Digitos = 3: xxx / Digitos = 4: xx,xx / Digitos = 5: xxx,xx
 uint16_t CalcularTension();
 uint16_t CalcularRetardo(uint16_t tension);
+void ReajustarTension();
 
 //Rutinas de servicio de interrupción.
 ISR(INT0_vect){
@@ -123,28 +124,17 @@ void main() {
         PORTD = (0<<4);
     sei();
     TIMER0_Start();
+    usegundos = CalcularRetardo(tensionDeseada);
     Interfaz();
 //         MostrarNumero(123, 3);
 //         USART_SetData('d');
 //        MostrarNumero(2232, 4);
 //                 USART_SetData('x');
 //        MostrarNumero(33332, 5);
-    usegundos = CalcularRetardo(tensionDeseada);
     while(1){
 //   MostrarNumero(CalcularTension(), 5);
 //   USART_SetData('s');
-            tensionReajustada = CalcularTension();
-
-            while(tensionReajustada <= tensionDeseada + 1 ){
-            tensionReajustada++;
-            usegundos = CalcularRetardo(tensionReajustada);
-            }
-
-            while(tensionReajustada >= tensionDeseada - 1){
-            tensionReajustada--;
-            usegundos = CalcularRetardo(tensionReajustada);
-            }                                      
-
+        ReajustarTension();                           
         ModoRemoto();
     }
 }
@@ -266,4 +256,18 @@ uint16_t CalcularRetardo(uint16_t tension){
     uint16_t _angulo = acos(tension/(tensionRed*sqrt(2)/PI)-1)* 180/PI;
     uint16_t _usegundos = (100*_angulo)/180;
     return 10000 - _usegundos * 100 ;
+}
+
+void ReajustarTension(){
+    tensionReajustada = CalcularTension();
+
+    while(tensionReajustada <= tensionDeseada + 1 ){
+    tensionReajustada++;
+    usegundos = CalcularRetardo(tensionReajustada);
+    }
+
+    while(tensionReajustada >= tensionDeseada - 1){
+    tensionReajustada--;
+    usegundos = CalcularRetardo(tensionReajustada);
+    }
 }
