@@ -12,7 +12,6 @@
 #include <math.h>
 
 
-
 //Librerias propias.
 #include "Librerias/INT/INT.h"
 #include "Librerias/TIMER0/TIMER0.h"
@@ -20,6 +19,8 @@
 #include "Librerias/TIMER1/TIMER1.h"
 #include "Librerias/USART/USARTAtmega328P.h"
 #include "Librerias/MAX7219/Max7219.h"
+
+
 //Declaracion de variables.
 const uint16_t tMax = 163; //Tiempo maximo que puede alcanzar el timer sin desbordar 
 const uint16_t rComp = 256; //Registro de comparacion maximo de 8bit
@@ -33,16 +34,17 @@ volatile uint16_t captura = 0; //Capturara el valor del timer
 volatile uint16_t ancho = 0; //Valor final del ancho de pulso
 volatile uint16_t angulo = 0;
 volatile uint16_t usegundos = 0;
-const uint16_t ms = 100;
 volatile uint16_t msegundos = 0;
 volatile uint8_t segundos = 0;
+
+const double PI = 3.14159265358979323846;
+
 
 volatile bool dimmer = true;
 volatile bool flanco = true;
 volatile bool reajustar = false;
-bool buffer = false;
+//bool buffer = false;
 
-double PI = 3.14159265358979323846;
 
 //Declaracion de Funciones.
 //Funciones exclusivas del Modo Remoto.
@@ -56,9 +58,10 @@ void AjustaTensionDeRedRemoto();
 void AjustarTensionDimmerRemoto();
 //Funciones generales utilizadas por ambos modos.
 void MostrarNumero(uint16_t numero, uint8_t digitos);  //Digitos = 3: xxx / Digitos = 4: xx,xx / Digitos = 5: xxx,xx
+void ReajustarTension();
 uint16_t CalcularTension();
 uint16_t CalcularRetardo(uint16_t tension);
-void ReajustarTension();
+
 
 //Rutinas de servicio de interrupción.
 ISR(INT0_vect){
@@ -123,7 +126,6 @@ void main() {
         DDRD = (1<<4);
         PORTD = (0<<4);
     sei();
-    TIMER0_Start();
     usegundos = CalcularRetardo(tensionDeseada);
     Interfaz();
 //         MostrarNumero(123, 3);
@@ -193,7 +195,7 @@ void Interfaz(){
 
 void AjustaTensionDeRedRemoto(){
     MAX7219_displayNumberyMenu(tensionRed, 1);
-    USART_GetIntData(&buffer,&tensionRedValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
+    USART_GetIntData(&tensionRedValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
     if(tensionRedValida < 250 && tensionRedValida >= 10){
         tensionRed = tensionRedValida;
         char _confirmacion[] ={"Se establecio el valor ingresado: \n"};
@@ -209,7 +211,7 @@ void AjustaTensionDeRedRemoto(){
 
 void AjustarTensionDimmerRemoto(){
     MAX7219_displayNumberyMenu(tensionDeseada, 2);
-    USART_GetIntData(&buffer,&tensionDeseadaValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
+    USART_GetIntData(&tensionDeseadaValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
     if(tensionDeseadaValida < tensionRed - 11 && tensionDeseadaValida >= 5){
         tensionDeseada = tensionDeseadaValida;
         char _confirmacion[] ={"Se establecio el valor ingresado: \n"};
@@ -260,14 +262,14 @@ uint16_t CalcularRetardo(uint16_t tension){
 
 void ReajustarTension(){
     tensionReajustada = CalcularTension();
-
-    while(tensionReajustada <= tensionDeseada + 1 ){
+ 
+    while(tensionReajustada <= tensionDeseada ){
     tensionReajustada++;
     usegundos = CalcularRetardo(tensionReajustada);
     }
-
-    while(tensionReajustada >= tensionDeseada - 1){
+    while(tensionReajustada >= tensionDeseada){
     tensionReajustada--;
     usegundos = CalcularRetardo(tensionReajustada);
     }
+ 
 }

@@ -57,11 +57,11 @@ unsigned char USART_GetData()
     
 	return UDR0;	
 }
-void USART_GetIntData(bool *buffer,volatile uint16_t *valor)
+void USART_GetIntData(volatile uint16_t *valor)
 {   
     int x = 0;
 	int _rx[3];
-    *buffer = false;
+//    *buffer = false;
     for(int i = 1; i <= 3; i++){
         while(!(UCSR0A & (1<<RXC0)));
         _rx[i] = UDR0;
@@ -71,6 +71,6 @@ void USART_GetIntData(bool *buffer,volatile uint16_t *valor)
           x = (x + (_rx[i] - '0')) ;
         }
     }
-    *buffer = true;
+//    *buffer = true;
     *valor = x;
 }

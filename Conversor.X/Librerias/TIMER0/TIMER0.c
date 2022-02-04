@@ -16,6 +16,7 @@
 	 
 	 //enable interrupt
 	 TIMSK0 |= (1<<TOIE0);
+     TIMER0_Start();
  }
 
  void TIMER0_Start(){
