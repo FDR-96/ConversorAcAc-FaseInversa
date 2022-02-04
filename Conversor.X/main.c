@@ -154,14 +154,31 @@ void ModoRemoto(){
 }
 
 void Interfaz(){
-      char _linea1[] ={"Seleccione la accion que desee realizar: \n"};
+      char _linea1[] ={"Seleccione la accion que desee realizar: \n\r"};
       USART_SetArrayData(_linea1, sizeof _linea1);
-      char _linea2[] ={"\n 1. Modificar la Tension de Red. \n"};
+      char _linea2[] ={" 1. Modificar la Tension de Red. \n\r"};
       USART_SetArrayData(_linea2, sizeof _linea2);
-      char _linea3[] ={"\n 2. Modificar la Tension del Dimmer. \n"};
+      char _linea3[] ={" 2. Modificar la Tension del Dimmer. \n\r"};
       USART_SetArrayData(_linea3, sizeof _linea3);
-      char _linea4[] ={"\n | Tension de Red | Tension del Dimmer | Tension de Realimentacion |  Ton  | Angulo | \n"};
+      char _linea4[] ={" |   Tension de Red   | Tension de Dimmer |Tension en la Carga|  Ton   | Angulo | \n\r"};
       USART_SetArrayData(_linea4, sizeof _linea4);
+   
+      char _1[] ={" |        "};
+      char _2[] ={"V        |       "};
+      USART_SetArrayData(_1, sizeof _1);
+      MostrarNumero(tensionRed, 3);
+      USART_SetArrayData(_2, sizeof _2);
+      MostrarNumero(tensionDeseada, 3);
+      USART_SetArrayData(_2, sizeof _2);
+      MostrarNumero(CalcularTension(), 3);
+      char _3[] ={"V        | "};
+      char _4[] ={" |  "};
+      USART_SetArrayData(_3, sizeof _3);
+      MostrarNumero(ancho, 6);
+      USART_SetArrayData(_4, sizeof _4);
+        char _5[] ={"  |"};
+      MostrarNumero(ancho, 6);
+      USART_SetArrayData(_5, sizeof _5);
 }
 
 void AjustaTensionDeRedRemoto(){
