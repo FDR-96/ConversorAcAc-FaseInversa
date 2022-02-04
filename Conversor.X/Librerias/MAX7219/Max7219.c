@@ -90,7 +90,7 @@ void MAX7219_displayNumberyMenu(volatile long number,int numero)
         number /= 10;
     } while (number);
     
-    MAX7219_writeData(MAX7219_DIGIT7, numero);
+    MAX7219_writeData(MAX7219_DIGIT6, numero);
     // Bear in mind that if you only have three digits, and
     // try to display something like "-256" all that will display
     // will be "256" because it needs an extra fourth digit to

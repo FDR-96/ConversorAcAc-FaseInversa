@@ -52,7 +52,7 @@ unsigned char USART_GetData()
 	while(!(UCSR0A & (1<<RXC0)) && ccont < 4){
         _delay_ms(500);
         ccont++;
-         USART_SetData('.');
+        USART_SetData('.');
     };
     
 	return UDR0;	
@@ -70,7 +70,7 @@ void USART_GetIntData(bool *buffer,volatile uint16_t *valor)
         }else{
           x = (x + (_rx[i] - '0')) ;
         }
-        *buffer = true;
     }
+    *buffer = true;
     *valor = x;
 }
