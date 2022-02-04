@@ -28,15 +28,18 @@ volatile uint16_t tensionRed = 110;
 volatile uint16_t tensionRedValida = 0;
 volatile uint16_t tensionDeseada = 50;
 volatile uint16_t tensionDeseadaValida = 0;
+volatile uint16_t tensionReajustada = 0;
 volatile uint16_t captura = 0; //Capturara el valor del timer
 volatile uint16_t ancho = 0; //Valor final del ancho de pulso
 volatile uint16_t angulo = 0;
+volatile uint16_t usegundos = 0;
 const uint16_t ms = 100;
 volatile uint16_t msegundos = 0;
 volatile uint8_t segundos = 0;
 
 volatile bool dimmer = true;
 volatile bool flanco = true;
+volatile bool reajustar = false;
 bool buffer = false;
 
 double PI = 3.14159265358979323846;
@@ -62,7 +65,7 @@ ISR(INT0_vect){
 
     if(dimmer){
    PORTD = (1<<4);
-   _delay_us(CalcularRetardo(tensionDeseada));
+   _delay_us(usegundos);
    PORTD = (0<<4);
     }
 }
@@ -81,6 +84,7 @@ ISR(TIMER0_OVF_vect) {
             segundos = 0;
         }else if(segundos == 10){
             TCCR1B|=(1<<CS12)|(0<<CS11)|(1<<CS10);
+            reajustar = true;
         }
     }
 }
@@ -125,9 +129,22 @@ void main() {
 //        MostrarNumero(2232, 4);
 //                 USART_SetData('x');
 //        MostrarNumero(33332, 5);
+    usegundos = CalcularRetardo(tensionDeseada);
     while(1){
 //   MostrarNumero(CalcularTension(), 5);
 //   USART_SetData('s');
+            tensionReajustada = CalcularTension();
+
+            while(tensionReajustada <= tensionDeseada + 1 ){
+            tensionReajustada++;
+            usegundos = CalcularRetardo(tensionReajustada);
+            }
+
+            while(tensionReajustada >= tensionDeseada - 1){
+            tensionReajustada--;
+            usegundos = CalcularRetardo(tensionReajustada);
+            }                                      
+
         ModoRemoto();
     }
 }
@@ -147,8 +164,11 @@ void ModoRemoto(){
         case '4':
             dimmer = true;
             break;
+        case 'x':
+            Interfaz();
+            break;
         default:
-            
+          
             break;
     }
 }
@@ -170,14 +190,14 @@ void Interfaz(){
       USART_SetArrayData(_2, sizeof _2);
       MostrarNumero(tensionDeseada, 3);
       USART_SetArrayData(_2, sizeof _2);
-      MostrarNumero(CalcularTension(), 3);
-      char _3[] ={"V        | "};
+      MostrarNumero(CalcularTension(), 5);
+      char _3[] ={"V      | "};
       char _4[] ={" |  "};
       USART_SetArrayData(_3, sizeof _3);
       MostrarNumero(ancho, 6);
       USART_SetArrayData(_4, sizeof _4);
-        char _5[] ={"  |"};
-      MostrarNumero(ancho, 6);
+        char _5[] ={"\217 |"};
+      MostrarNumero(angulo, 3);
       USART_SetArrayData(_5, sizeof _5);
 }
 
@@ -190,6 +210,7 @@ void AjustaTensionDeRedRemoto(){
         USART_SetArrayData(_confirmacion, sizeof _confirmacion);
         MostrarNumero(tensionRed, 3);
         MAX7219_displayNumberyMenu(tensionRed, 1);
+        usegundos = CalcularRetardo(tensionDeseada);
     }else{
         char _alerta[] ={"Alerta!, ingrese otro valor. \n"};
         USART_SetArrayData(_alerta, sizeof _alerta);
@@ -205,6 +226,7 @@ void AjustarTensionDimmerRemoto(){
         USART_SetArrayData(_confirmacion, sizeof _confirmacion);
         MostrarNumero(tensionDeseada, 3);
         MAX7219_displayNumberyMenu(tensionDeseada, 2);
+        usegundos = CalcularRetardo(tensionDeseada);
     }else{
         char _alerta[] ={"Alerta!, ingrese otro valor. \n"};
         USART_SetArrayData(_alerta, sizeof _alerta);
@@ -236,8 +258,8 @@ void MostrarNumero(uint16_t numero, uint8_t digitos)
 
 uint16_t  CalcularTension(){
     angulo = (180*ancho)/100;
-    uint16_t _tensionCarga =  (tensionRed*sqrt(2)/PI)*(1+cos(angulo * PI/180))*100;
-    return _tensionCarga;
+    uint16_t _tensionCarga =  (tensionRed*sqrt(2)/PI)*(1-cos(angulo * PI/180));
+    return _tensionCarga * 100;
 }
 
 uint16_t CalcularRetardo(uint16_t tension){
