@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/TIMER0/TIMER0.c</file>
+            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/ADC/ADC.c</file>
             <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/main.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/USART/USARTAtmega328P.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/TIMER1/TIMER1.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/WTD/WATCHDOG.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/TIMER1/TIMER1.h</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/INT/INT.c</file>
         </group>
     </open-files>
 </project-private>

@@ -21,7 +21,7 @@
 
  void TIMER0_Start(){
 
-	 TCNT0 = 0x6;
+	 TCNT0 = 0x63;
 	 /*
 		Fint = Fcpu/(N*(Rcom-max + 1))
 		1 = 16MHz/(N*256)
@@ -29,8 +29,8 @@
       * Fint = 975
 	*/
 	 TCCR0B |= (1<<CS00);	// 1
-	 TCCR0B |=  (1<<CS01);	// 0
-	 TCCR0B |= (0<<CS02);	// 1
+	 TCCR0B |=  (0<<CS01);	// 0
+	 TCCR0B |= (1<<CS02);	// 1
 	 
  }
 

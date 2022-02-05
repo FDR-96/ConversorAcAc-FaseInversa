@@ -17,6 +17,7 @@
 #include "Librerias/TIMER0/TIMER0.h"
 #include "Librerias/PCINT/PCINT.h"
 #include "Librerias/TIMER1/TIMER1.h"
+#include "Librerias/ADC/ADC.h"
 #include "Librerias/USART/USARTAtmega328P.h"
 #include "Librerias/MAX7219/Max7219.h"
 
@@ -36,12 +37,17 @@ volatile uint16_t angulo = 0;
 volatile uint16_t usegundos = 0;
 volatile uint16_t msegundos = 0;
 volatile uint8_t segundos = 0;
+volatile uint8_t flag = 0;
+volatile uint8_t contador = 0;
 
 const double PI = 3.14159265358979323846;
 
 
 volatile bool dimmer = true;
-volatile bool flanco = true;
+volatile bool flanco = false;
+volatile bool bandera = true;
+volatile bool capturar = true;
+volatile bool clickLargo = false;
 volatile bool reajustar = false;
 //bool buffer = false;
 
@@ -54,8 +60,8 @@ void AjustaTensionDeRedRemoto();
 void AjustarTensionDimmerRemoto();
 //Funciones exclusivas del Modo Local.
 void ModoLocal();
-void AjustaTensionDeRedRemoto();
-void AjustarTensionDimmerRemoto();
+void AjustaTensionDeRedLocal();
+void AjustarTensionDimmerLocal();
 //Funciones generales utilizadas por ambos modos.
 void MostrarNumero(uint16_t numero, uint8_t digitos);  //Digitos = 3: xxx / Digitos = 4: xx,xx / Digitos = 5: xxx,xx
 void ReajustarTension();
@@ -65,32 +71,40 @@ uint16_t CalcularRetardo(uint16_t tension);
 
 //Rutinas de servicio de interrupción.
 ISR(INT0_vect){
-//CalcularTension();
-
     if(dimmer){
-   PORTD = (1<<4);
-   _delay_us(usegundos);
-   PORTD = (0<<4);
+       PORTD = (1<<4);
+       _delay_us(usegundos);
+       PORTD = (0<<4);
     }
 }
 
 ISR(INT1_vect){
-
- //  MostrarNumero(1111, 4);
+  if(flanco){
+      if(msegundos >= 50 || flag > 0){
+        clickLargo = true;
+      }else if(contador >= 3){
+        contador = 0;
+        bandera = true;
+      }else{
+        bandera = false;
+        contador++;
+      }
+  }
+  flag = 0;
+  msegundos = 0;
+  flanco = !flanco;
 }
 
 ISR(TIMER0_OVF_vect) {
     msegundos++;
     if(msegundos == 100){
         msegundos = 0;
-        segundos++;
-        if(segundos == 60){
-            segundos = 0;
-        }else if(segundos == 10){
+        flag++;
+    }else if(msegundos == 20 || msegundos == 50 || msegundos == 80 ){
             TCCR1B|=(1<<CS12)|(0<<CS11)|(1<<CS10);
             reajustar = true;
-        }
     }
+    TCNT0 = 0x63;
 }
 
 //Si el TC (de 8 bits) se ejecuta a 16 MHz, se desbordará después de 16,384 ms, lo que supera con creces el intervalo de muestra recomendado de 10 ms.
@@ -98,7 +112,7 @@ ISR(TIMER0_OVF_vect) {
 //ancho del pulso en microsegundos:
 
 ISR(TIMER1_CAPT_vect) {
-  if(flanco) // Detectamos un flanco ascendente
+  if(capturar) // Detectamos un flanco ascendente
 	{
 		TCCR1B &=~ (1 << ICES1); //cambiamos el sensado establecido por el de descendente
 		TCNT1 = 0x00;
@@ -110,7 +124,7 @@ ISR(TIMER1_CAPT_vect) {
 		TCCR1B |= (1 << ICES1); //cambiamos el sensado establecido por el de ascendente
         TCCR1B|=(0<<CS12)|(0<<CS11)|(0<<CS10);
 	}
-     flanco = !flanco;
+     capturar = !capturar;
 }
 
 
@@ -121,6 +135,7 @@ void main() {
         INT_init();
         TIMER0_init();
         TIMER1_init();
+        ADC_init();
         USART_init();
         MAX7219_init();
         DDRD = (1<<4);
@@ -136,8 +151,12 @@ void main() {
     while(1){
 //   MostrarNumero(CalcularTension(), 5);
 //   USART_SetData('s');
-        ReajustarTension();                           
-        ModoRemoto();
+        ReajustarTension();  
+        if(bandera){
+            ModoRemoto();
+        }else{
+            ModoLocal();
+        }
     }
 }
 
@@ -160,8 +179,8 @@ void ModoRemoto(){
             Interfaz();
             break;
         default:
-          
-            break;
+            return;
+
     }
 }
 
@@ -225,6 +244,36 @@ void AjustarTensionDimmerRemoto(){
     }
 }
 
+void ModoLocal(){
+        switch(contador){
+        case 1:
+            MAX7219_displayNumberyMenu(tensionRed, 1);
+            if(clickLargo)AjustaTensionDeRedLocal();
+            break;
+        case 2:
+            MAX7219_displayNumberyMenu(tensionDeseada, 2);
+            if(clickLargo){
+                   MAX7219_displayNumberyMenu(222, 2);
+                   clickLargo = false;
+            }
+            break;
+        default:
+            return;
+    }
+}
+
+void AjustaTensionDeRedLocal(){
+    while(contador == 1){
+        tensionRed = ADC_GetData(0)*220.0f/1024.0f;
+        MAX7219_displayNumberyMenu(tensionRed, 1);
+    }
+    clickLargo = false;
+}
+
+void AjustarTensionDimmerLocal(){
+        clickLargo = false;
+}
+
 void MostrarNumero(uint16_t numero, uint8_t digitos)
 {
 	uint16_t _unidades = numero%10;
@@ -232,6 +281,7 @@ void MostrarNumero(uint16_t numero, uint8_t digitos)
     uint16_t _centenas = (numero/100)%10;
     uint16_t _milesu = (numero/1000)%10;
     uint16_t _milesd = (numero/10000)%10;
+    
     if(digitos == 3){
       char _tx3[3] ={_centenas + '0',_decenas + '0', _unidades + '0'};
       USART_SetArrayData(_tx3, sizeof _tx3);
