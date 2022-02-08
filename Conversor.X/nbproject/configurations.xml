@@ -39,9 +39,6 @@
           <itemPath>Librerias/USART/USARTAtmega328P.c</itemPath>
           <itemPath>Librerias/USART/USARTAtmega328P.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="WTD" displayName="WTD" projectFiles="true">
-          <itemPath>Librerias/WTD/WATCHDOG.c</itemPath>
-        </logicalFolder>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>

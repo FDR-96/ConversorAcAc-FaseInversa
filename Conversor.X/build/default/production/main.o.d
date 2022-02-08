@@ -21,9 +21,9 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdarg.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h \
- Librerias/INT/INT.h Librerias/TIMER0/TIMER0.h Librerias/PCINT/PCINT.h \
- Librerias/TIMER1/TIMER1.h Librerias/ADC/ADC.h \
- Librerias/USART/USARTAtmega328P.h Librerias/MAX7219/Max7219.h
+ Librerias/INT/INT.h Librerias/TIMER0/TIMER0.h Librerias/TIMER1/TIMER1.h \
+ Librerias/ADC/ADC.h Librerias/USART/USARTAtmega328P.h \
+ Librerias/MAX7219/Max7219.h
 
 c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h:
 
@@ -72,8 +72,6 @@ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h:
 Librerias/INT/INT.h:
 
 Librerias/TIMER0/TIMER0.h:
-
-Librerias/PCINT/PCINT.h:
 
 Librerias/TIMER1/TIMER1.h:
 

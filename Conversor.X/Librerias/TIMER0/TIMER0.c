@@ -16,12 +16,8 @@
 	 
 	 //enable interrupt
 	 TIMSK0 |= (1<<TOIE0);
-     TIMER0_Start();
- }
-
- void TIMER0_Start(){
-
-	 TCNT0 = 0x63;
+     //Encendemos
+     TCNT0 = 0x63;
 	 /*
 		Fint = Fcpu/(N*(Rcom-max + 1))
 		1 = 16MHz/(N*256)
@@ -31,14 +27,4 @@
 	 TCCR0B |= (1<<CS00);	// 1
 	 TCCR0B |=  (0<<CS01);	// 0
 	 TCCR0B |= (1<<CS02);	// 1
-	 
- }
-
- void TIMER0_Stop(){
-	 
-	 //Clock setting T1clock = 0 Hz
-	 TCCR0B &=~ (1<<CS00);
-	 TCCR0B &=~ (1<<CS01);
-	 TCCR0B &=~ (1<<CS02);
-
  }

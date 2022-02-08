@@ -15,7 +15,7 @@
 //Librerias propias.
 #include "Librerias/INT/INT.h"
 #include "Librerias/TIMER0/TIMER0.h"
-#include "Librerias/PCINT/PCINT.h"
+//#include "Librerias/PCINT/PCINT.h"
 #include "Librerias/TIMER1/TIMER1.h"
 #include "Librerias/ADC/ADC.h"
 #include "Librerias/USART/USARTAtmega328P.h"
@@ -35,8 +35,8 @@ volatile uint16_t captura = 0; //Capturara el valor del timer
 volatile uint16_t ancho = 0; //Valor final del ancho de pulso
 volatile uint16_t angulo = 0;
 volatile uint16_t usegundos = 0;
-volatile uint16_t msegundos = 0;
-volatile uint8_t segundos = 0;
+volatile uint16_t porciento = 0;
+volatile uint8_t msegundos = 0;
 volatile uint8_t flag = 0;
 volatile uint8_t contador = 0;
 
@@ -71,22 +71,10 @@ uint16_t CalcularRetardo(uint16_t tension);
 
 //Rutinas de servicio de interrupción.
 ISR(INT0_vect){
-    if(dimmer){
-       PORTD = (1<<4);
-       _delay_us(usegundos);
-       PORTD = (0<<4);
-    }
-}
-
-ISR(INT1_vect){
   if(flanco){
-      if(msegundos >= 50 || flag > 0){
+      if((msegundos >= 50 || flag > 0) && contador < 3){
         clickLargo = true;
-      }else if(contador >= 3){
-        contador = 0;
-        bandera = true;
       }else{
-        bandera = false;
         contador++;
       }
   }
@@ -94,6 +82,15 @@ ISR(INT1_vect){
   msegundos = 0;
   flanco = !flanco;
 }
+
+ISR(INT1_vect){
+    if(dimmer){
+       PORTD = (1<<4);
+       _delay_us(usegundos);
+       PORTD = (0<<4);
+    }
+}
+
 
 ISR(TIMER0_OVF_vect) {
     msegundos++;
@@ -131,7 +128,7 @@ ISR(TIMER1_CAPT_vect) {
 
 void main() {
     cli();
-        PCINT_init();
+       // PCINT_init();
         INT_init();
         TIMER0_init();
         TIMER1_init();
@@ -143,16 +140,11 @@ void main() {
     sei();
     usegundos = CalcularRetardo(tensionDeseada);
     Interfaz();
-//         MostrarNumero(123, 3);
-//         USART_SetData('d');
-//        MostrarNumero(2232, 4);
-//                 USART_SetData('x');
-//        MostrarNumero(33332, 5);
     while(1){
-//   MostrarNumero(CalcularTension(), 5);
-//   USART_SetData('s');
-        ReajustarTension();  
-        if(bandera){
+     
+            ReajustarTension(); 
+        if(contador == 0 || contador >= 3){
+            contador = 0;
             ModoRemoto();
         }else{
             ModoLocal();
@@ -217,13 +209,13 @@ void AjustaTensionDeRedRemoto(){
     USART_GetIntData(&tensionRedValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
     if(tensionRedValida < 250 && tensionRedValida >= 10){
         tensionRed = tensionRedValida;
-        char _confirmacion[] ={"Se establecio el valor ingresado: \n"};
+        char _confirmacion[] ={"Se establecio el valor ingresado: \n\r"};
         USART_SetArrayData(_confirmacion, sizeof _confirmacion);
         MostrarNumero(tensionRed, 3);
         MAX7219_displayNumberyMenu(tensionRed, 1);
         usegundos = CalcularRetardo(tensionDeseada);
     }else{
-        char _alerta[] ={"Alerta!, ingrese otro valor. \n"};
+        char _alerta[] ={"Alerta!, ingrese otro valor. \n\r"};
         USART_SetArrayData(_alerta, sizeof _alerta);
     }
 }
@@ -233,13 +225,13 @@ void AjustarTensionDimmerRemoto(){
     USART_GetIntData(&tensionDeseadaValida); //https://es.acervolima.com/como-devolver-multiples-valores-de-una-funcion-en-c-o-c/
     if(tensionDeseadaValida < tensionRed - 11 && tensionDeseadaValida >= 5){
         tensionDeseada = tensionDeseadaValida;
-        char _confirmacion[] ={"Se establecio el valor ingresado: \n"};
+        char _confirmacion[] ={"Se establecio el valor ingresado: \n\r"};
         USART_SetArrayData(_confirmacion, sizeof _confirmacion);
         MostrarNumero(tensionDeseada, 3);
         MAX7219_displayNumberyMenu(tensionDeseada, 2);
         usegundos = CalcularRetardo(tensionDeseada);
     }else{
-        char _alerta[] ={"Alerta!, ingrese otro valor. \n"};
+        char _alerta[] ={"Alerta!, ingrese otro valor. \n\r"};
         USART_SetArrayData(_alerta, sizeof _alerta);
     }
 }
@@ -248,14 +240,11 @@ void ModoLocal(){
         switch(contador){
         case 1:
             MAX7219_displayNumberyMenu(tensionRed, 1);
-            if(clickLargo)AjustaTensionDeRedLocal();
+            if(clickLargo){AjustaTensionDeRedLocal();}
             break;
         case 2:
             MAX7219_displayNumberyMenu(tensionDeseada, 2);
-            if(clickLargo){
-                   MAX7219_displayNumberyMenu(222, 2);
-                   clickLargo = false;
-            }
+            if(clickLargo){AjustarTensionDimmerLocal();}
             break;
         default:
             return;
@@ -263,15 +252,33 @@ void ModoLocal(){
 }
 
 void AjustaTensionDeRedLocal(){
+    char _info[] ={"Ajustar Tension de Red Local \n\r"};
+    USART_SetArrayData(_info, sizeof _info);
     while(contador == 1){
         tensionRed = ADC_GetData(0)*220.0f/1024.0f;
+        tensionDeseada = (porciento * tensionRed)/100;
         MAX7219_displayNumberyMenu(tensionRed, 1);
     }
+    contador = 1;
     clickLargo = false;
+    char _confirmacion[] ={"Se establecio una Tension de red de: \n\r"};
+    USART_SetArrayData(_confirmacion, sizeof _confirmacion);
+    MostrarNumero(tensionRed, 3);
 }
 
 void AjustarTensionDimmerLocal(){
-        clickLargo = false;
+    char _info[] ={"Ajustar Tension de Dimmer Local \n\r"};
+    USART_SetArrayData(_info, sizeof _info);
+    while(contador == 2){  
+        porciento = (ADC_GetData(0)*100.0f)/1024.0f;
+        tensionDeseada = (porciento * tensionRed)/100;
+        MAX7219_displayNumberyMenu(tensionDeseada, 2);
+    }
+    contador = 2;
+    clickLargo = false;
+    char _confirmacion[] ={"Se establecio una Tension en la carga de: \n\r"};
+    USART_SetArrayData(_confirmacion, sizeof _confirmacion);
+    MostrarNumero(tensionDeseada, 3);
 }
 
 void MostrarNumero(uint16_t numero, uint8_t digitos)
@@ -312,14 +319,15 @@ uint16_t CalcularRetardo(uint16_t tension){
 
 void ReajustarTension(){
     tensionReajustada = CalcularTension();
- 
-    while(tensionReajustada <= tensionDeseada ){
-    tensionReajustada++;
+
+        while(tensionReajustada < tensionDeseada){
+        tensionReajustada++;
+        }
+    
+        while(tensionReajustada > tensionDeseada){
+        tensionReajustada--;
+        }
+
+    reajustar = false;
     usegundos = CalcularRetardo(tensionReajustada);
-    }
-    while(tensionReajustada >= tensionDeseada){
-    tensionReajustada--;
-    usegundos = CalcularRetardo(tensionReajustada);
-    }
- 
 }

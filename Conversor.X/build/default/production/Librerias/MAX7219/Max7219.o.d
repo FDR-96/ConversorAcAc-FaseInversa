@@ -1,8 +1,6 @@
 build/default/production/Librerias/MAX7219/Max7219.o.d \
  build/default/production/Librerias/MAX7219/Max7219.o: \
  Librerias/MAX7219/Max7219.c Librerias/MAX7219/MAX7219.h \
- c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h \
- c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\sfr_defs.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\inttypes.h \
@@ -17,6 +15,8 @@ build/default/production/Librerias/MAX7219/Max7219.o.d \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h \
+ c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h \
+ c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdbool.h \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\stdlib.h \
  c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stddef.h \
@@ -25,10 +25,6 @@ build/default/production/Librerias/MAX7219/Max7219.o.d \
  c:\program\ files\microchip\xc8\v2.32\avr\avr\include\string.h
 
 Librerias/MAX7219/MAX7219.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h:
-
-c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\avr\io.h:
 
@@ -57,6 +53,10 @@ c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay.h:
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\util\delay_basic.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\avr\include\math.h:
+
+c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\xc.h:
+
+c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\cci.h:
 
 c:\program\ files\microchip\xc8\v2.32\avr\lib\gcc\avr\5.4.0\include\stdbool.h:
 

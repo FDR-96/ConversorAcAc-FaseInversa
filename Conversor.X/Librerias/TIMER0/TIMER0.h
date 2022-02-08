@@ -13,7 +13,4 @@
 
 	void TIMER0_init();
 
-	void TIMER0_Start();
-	void TIMER0_Stop();
-
 #endif /* TIMER0_H_ */

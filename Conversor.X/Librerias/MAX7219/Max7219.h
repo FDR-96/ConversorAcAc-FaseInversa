@@ -4,6 +4,9 @@
 
 
 
+#define F_CPU 16000000
+#include <avr/io.h>
+#include <util/delay.h>
 #include <xc.h>
 
 
@@ -47,9 +50,6 @@
 #define DISP_SELECT() SPI_PORT &= ~(1<<SPI_DISP)
 #define DISP_DESELECT() SPI_PORT |= (1<<SPI_DISP)
 
-#define F_CPU 16000000
-#include <avr/io.h>
-#include <util/delay.h>
 
 
 
