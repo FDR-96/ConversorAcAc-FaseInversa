@@ -24,7 +24,7 @@ void ADC_init()
 
 int ADC_GetData(int canal)
 {
-	// Selección del canal de lADC //
+	// Seleccion del canal de lADC //
 	ADMUX &=~  0x0F;
 	ADMUX |=  canal;
 	

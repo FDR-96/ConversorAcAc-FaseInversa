@@ -9,7 +9,7 @@
 
  void TIMER0_init(){
 	 
-	 //Operation Mode = NORMAL, OVERFLOW O SOBRECARGA
+	 //Modo de operacion = NORMAL, OVERFLOW O SOBRECARGA
 	 TCCR0A &=~ (1<<WGM00);
 	 TCCR0A &=~  (1<<WGM01);
 	 TCCR0B &=~ (1<<WGM02);
