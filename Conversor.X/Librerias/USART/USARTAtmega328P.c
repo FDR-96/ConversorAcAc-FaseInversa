@@ -49,10 +49,12 @@ void USART_SetArrayData(char *ArrayTx, int len)
 unsigned char USART_GetData()
 {
     int ccont = 0;
-	while(!(UCSR0A & (1<<RXC0)) && ccont < 4){
-        _delay_ms(500);
+	while(!(UCSR0A & (1<<RXC0)) && ccont < 100){
+        _delay_ms(50);
         ccont++;
-        USART_SetData('.');
+        if(ccont == 99){
+            return '0';
+        }
     };
     
 	return UDR0;	
