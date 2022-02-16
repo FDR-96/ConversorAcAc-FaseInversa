@@ -15,6 +15,10 @@
       <logicalFolder name="Librerias" displayName="Librerias" projectFiles="true">
         <logicalFolder name="ADC" displayName="ADC" projectFiles="true">
           <itemPath>Librerias/ADC/ADC.c</itemPath>
+          <itemPath>Librerias/ADC/ADC.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="EEPROM" displayName="EEPROM" projectFiles="true">
+          <itemPath>Librerias/EEPROM/EEPROM.c</itemPath>
         </logicalFolder>
         <logicalFolder name="INT" displayName="INT" projectFiles="true">
           <itemPath>Librerias/INT/INT.c</itemPath>

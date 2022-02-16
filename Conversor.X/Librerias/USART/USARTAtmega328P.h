@@ -17,5 +17,5 @@ void USART_init();
 void USART_SetData(unsigned char Tx);
 void USART_SetArrayData(char *ArrayTx, int len);
 unsigned char USART_GetData();
-void USART_GetIntData(volatile uint16_t *valor);
+volatile uint16_t USART_GetIntData();
 #endif 

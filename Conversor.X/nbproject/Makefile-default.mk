@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Librerias/ADC/ADC.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c
+SOURCEFILES_QUOTED_IF_SPACED=Librerias/ADC/ADC.c Librerias/EEPROM/EEPROM.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Librerias/ADC/ADC.o.d ${OBJECTDIR}/Librerias/INT/INT.o.d ${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d ${OBJECTDIR}/Librerias/PCINT/PCINT.o.d ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d ${OBJECTDIR}/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Librerias/ADC/ADC.o.d ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d ${OBJECTDIR}/Librerias/INT/INT.o.d ${OBJECTDIR}/Librerias/MAX7219/Max7219.o.d ${OBJECTDIR}/Librerias/PCINT/PCINT.o.d ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o.d ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o.d ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o.d ${OBJECTDIR}/main.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o
+OBJECTFILES=${OBJECTDIR}/Librerias/ADC/ADC.o ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o ${OBJECTDIR}/Librerias/INT/INT.o ${OBJECTDIR}/Librerias/MAX7219/Max7219.o ${OBJECTDIR}/Librerias/PCINT/PCINT.o ${OBJECTDIR}/Librerias/TIMER0/TIMER0.o ${OBJECTDIR}/Librerias/TIMER1/TIMER1.o ${OBJECTDIR}/Librerias/USART/USARTAtmega328P.o ${OBJECTDIR}/main.o
 
 # Source Files
-SOURCEFILES=Librerias/ADC/ADC.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c
+SOURCEFILES=Librerias/ADC/ADC.c Librerias/EEPROM/EEPROM.c Librerias/INT/INT.c Librerias/MAX7219/Max7219.c Librerias/PCINT/PCINT.c Librerias/TIMER0/TIMER0.c Librerias/TIMER1/TIMER1.c Librerias/USART/USARTAtmega328P.c main.c
 
 
 
@@ -99,6 +99,12 @@ ${OBJECTDIR}/Librerias/ADC/ADC.o: Librerias/ADC/ADC.c  .generated_files/flags/de
 	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o.d 
 	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT ${OBJECTDIR}/Librerias/ADC/ADC.o -o ${OBJECTDIR}/Librerias/ADC/ADC.o Librerias/ADC/ADC.c 
+	
+${OBJECTDIR}/Librerias/EEPROM/EEPROM.o: Librerias/EEPROM/EEPROM.c  .generated_files/flags/default/c0682e9bbaf646bbee8aeefad022da1d9b32dfc2 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/EEPROM" 
+	@${RM} ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d" -MT "${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d" -MT ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o -o ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o Librerias/EEPROM/EEPROM.c 
 	
 ${OBJECTDIR}/Librerias/INT/INT.o: Librerias/INT/INT.c  .generated_files/flags/default/8b608e69cda59691098112087c11ecd074fb915 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}/Librerias/INT" 
@@ -148,6 +154,12 @@ ${OBJECTDIR}/Librerias/ADC/ADC.o: Librerias/ADC/ADC.c  .generated_files/flags/de
 	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o.d 
 	@${RM} ${OBJECTDIR}/Librerias/ADC/ADC.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT "${OBJECTDIR}/Librerias/ADC/ADC.o.d" -MT ${OBJECTDIR}/Librerias/ADC/ADC.o -o ${OBJECTDIR}/Librerias/ADC/ADC.o Librerias/ADC/ADC.c 
+	
+${OBJECTDIR}/Librerias/EEPROM/EEPROM.o: Librerias/EEPROM/EEPROM.c  .generated_files/flags/default/5be94eeb3815a4c63b1fd457ad35cd5c5eb6b6f4 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
+	@${MKDIR} "${OBJECTDIR}/Librerias/EEPROM" 
+	@${RM} ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d 
+	@${RM} ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3     -MD -MP -MF "${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d" -MT "${OBJECTDIR}/Librerias/EEPROM/EEPROM.o.d" -MT ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o -o ${OBJECTDIR}/Librerias/EEPROM/EEPROM.o Librerias/EEPROM/EEPROM.c 
 	
 ${OBJECTDIR}/Librerias/INT/INT.o: Librerias/INT/INT.c  .generated_files/flags/default/fdbed1faddad856fd3b9e984ca18ca1cd3c7d750 .generated_files/flags/default/2f9e58fd8ce1a2611b0e0fd33168db129b9285f3
 	@${MKDIR} "${OBJECTDIR}/Librerias/INT" 

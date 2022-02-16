@@ -50,22 +50,19 @@ unsigned char USART_GetData()
 {
     int ccont = 0;
 	while(!(UCSR0A & (1<<RXC0)) && ccont < 100){
-        _delay_ms(50);
         ccont++;
-        if(ccont == 99){
-            return '0';
-        }
     };
     
 	return UDR0;	
 }
-void USART_GetIntData(volatile uint16_t *valor)
+volatile uint16_t USART_GetIntData()
 {   
     int x = 0;
 	int _rx[3];
 //    *buffer = false;
     for(int i = 1; i <= 3; i++){
         while(!(UCSR0A & (1<<RXC0)));
+        
         _rx[i] = UDR0;
         if(i <= 2){
           x = (x + (_rx[i] - '0'))*10;
@@ -74,5 +71,5 @@ void USART_GetIntData(volatile uint16_t *valor)
         }
     }
 //    *buffer = true;
-    *valor = x;
+    return x;
 }
