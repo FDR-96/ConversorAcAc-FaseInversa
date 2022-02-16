@@ -72,15 +72,6 @@ void MAX7219_clearDisplay()
 //
 void MAX7219_displayNumber(volatile long number) 
 {
-    char negative = 0;
-
-    // Convert negative to positive.
-    // Keep a record that it was negative so we can
-    // sign it again on the display.
-    if (number < 0) {
-        negative = 1;
-        number *= -1;
-    }
 
     MAX7219_clearDisplay();
 
@@ -103,53 +94,4 @@ void MAX7219_displayNumber(volatile long number)
 
     } while (number);
 
-    // Bear in mind that if you only have three digits, and
-    // try to display something like "-256" all that will display
-    // will be "256" because it needs an extra fourth digit to
-    // display the sign.
-    if (negative) {
-        MAX7219_writeData(i, MAX7219_CHAR_NEGATIVE);
-    }
 }
-
-//void MAX7219_displayNumberyMenu(volatile long number,int numero) 
-//{
-//    char negative = 0;
-//
-//    // Convert negative to positive.
-//    // Keep a record that it was negative so we can
-//    // sign it again on the display.
-//    if (number < 0) {
-//        negative = 1;
-//        number *= -1;
-//    }
-//
-//    MAX7219_clearDisplay();
-//
-//    // If number = 0, only show one zero then exit
-//    if (number == 0) {
-//        MAX7219_writeData(MAX7219_DIGIT0, 0);
-//        return;
-//    }
-//    
-//    // Initialization to 0 required in this case,
-//    // does not work without it. Not sure why.
-//    char i = 0; 
-//    
-//    // Loop until number is 0.
-//    do {
-//        MAX7219_writeData(++i, number % 10);
-//        // Actually divide by 10 now.
-//        number /= 10;
-//    } while (number);
-//    
-//    MAX7219_writeData(MAX7219_DIGIT6, numero);
-//    // Bear in mind that if you only have three digits, and
-//    // try to display something like "-256" all that will display
-//    // will be "256" because it needs an extra fourth digit to
-//    // display the sign.
-//    
-//    if (negative) {
-//        MAX7219_writeData(i, MAX7219_CHAR_NEGATIVE);
-//    }
-//}

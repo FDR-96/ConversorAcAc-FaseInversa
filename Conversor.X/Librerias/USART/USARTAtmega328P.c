@@ -27,8 +27,9 @@ void USART_init()
     unsigned int ubrr = MYUBRR ;
     UBRR0H = ((unsigned int)ubrr>>8);
     UBRR0L = ((unsigned int)ubrr);  
-    UCSR0B = (1<<RXEN0)|(1<<TXEN0);
+    UCSR0B = (1<<RXEN0)|(1<<TXEN0)|(1 << RXCIE0);;
     UCSR0C = (1<<USBS0)|(3<<UCSZ00);
+
 }
 
 
@@ -45,31 +46,4 @@ void USART_SetArrayData(char *ArrayTx, int len)
        while (!( UCSR0A & (1<<UDRE0)));
         UDR0 = ArrayTx[i];
      }
-}
-unsigned char USART_GetData()
-{
-    int ccont = 0;
-	while(!(UCSR0A & (1<<RXC0)) && ccont < 100){
-        ccont++;
-    };
-    
-	return UDR0;	
-}
-volatile uint16_t USART_GetIntData()
-{   
-    int x = 0;
-	int _rx[3];
-//    *buffer = false;
-    for(int i = 1; i <= 3; i++){
-        while(!(UCSR0A & (1<<RXC0)));
-        
-        _rx[i] = UDR0;
-        if(i <= 2){
-          x = (x + (_rx[i] - '0'))*10;
-        }else{
-          x = (x + (_rx[i] - '0')) ;
-        }
-    }
-//    *buffer = true;
-    return x;
 }

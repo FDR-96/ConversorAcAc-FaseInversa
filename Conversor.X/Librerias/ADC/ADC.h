@@ -12,6 +12,6 @@
 
 
 void ADC_init();
-volatile uint16_t ADC_GetData(int canal);
+
 
 #endif /* ADC_H_ */
