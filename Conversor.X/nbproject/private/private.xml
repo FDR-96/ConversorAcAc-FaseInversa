@@ -5,8 +5,7 @@
         <group>
             <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/TIMER0/TIMER0.c</file>
             <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/main.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/USART/USARTAtmega328P.c</file>
-            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/EEPROM/EEPROM.c</file>
+            <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/TIMER1/TIMER1.c</file>
             <file>file:/C:/Users/FDR-96/Documents/Github/ConversorAcAc-FaseInversa/Conversor.X/Librerias/INT/INT.c</file>
         </group>
     </open-files>

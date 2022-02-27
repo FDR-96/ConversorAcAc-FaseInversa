@@ -17,7 +17,7 @@
 	 //enable interrupt
 	 TIMSK0 |= (1<<TOIE0);
      //Encendemos
-      TCNT0 = 0x4c;
+      TCNT0 = 0xEC;
 	 /*
 		Fint = Fcpu/(N*(Rcom-max + 1))
 		1 = 16MHz/(N*256)

@@ -24,7 +24,7 @@ SOFTWARE.
 
 
 
-uint8_t EEPROM_read(uint16_t uiAddress, uint8_t *data)
+uint8_t EEPROM_read(uint16_t uiAddress, volatile uint8_t *data)
 {
 	
 	if(uiAddress > EEPROM_SIZE){
@@ -62,7 +62,7 @@ uint8_t EEPROM_write(uint16_t uiAddress, uint8_t ucData)
 	return EEPROM_OK;
 }
 
-uint8_t EEPROM_update(uint16_t uiAddress, uint8_t ucData){
+uint8_t EEPROM_update(uint16_t uiAddress, volatile uint8_t ucData){
 	uint8_t err = EEPROM_OK;
 	if(uiAddress > EEPROM_SIZE){
 		return EEPROM_INVALID_ADDR;

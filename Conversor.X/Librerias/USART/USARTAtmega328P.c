@@ -23,7 +23,6 @@
 #define MYUBRR FOSC/16/BAUD-1
 void USART_init()
 {
-    
     unsigned int ubrr = MYUBRR ;
     UBRR0H = ((unsigned int)ubrr>>8);
     UBRR0L = ((unsigned int)ubrr);  

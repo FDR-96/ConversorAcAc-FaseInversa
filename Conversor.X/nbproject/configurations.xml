@@ -27,10 +27,6 @@
           <itemPath>Librerias/MAX7219/Max7219.c</itemPath>
           <itemPath>Librerias/MAX7219/Max7219.h</itemPath>
         </logicalFolder>
-        <logicalFolder name="PCINT" displayName="PCINT" projectFiles="true">
-          <itemPath>Librerias/PCINT/PCINT.c</itemPath>
-          <itemPath>Librerias/PCINT/PCINT.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="TIMER0" displayName="TIMER0" projectFiles="true">
           <itemPath>Librerias/TIMER0/TIMER0.c</itemPath>
           <itemPath>Librerias/TIMER0/TIMER0.h</itemPath>
