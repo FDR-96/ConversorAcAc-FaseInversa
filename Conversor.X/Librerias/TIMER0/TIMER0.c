@@ -13,18 +13,17 @@
 	 TCCR0A &=~ (1<<WGM00);
 	 TCCR0A &=~  (1<<WGM01);
 	 TCCR0B &=~ (1<<WGM02);
-	 
-	 //enable interrupt
-	 TIMSK0 |= (1<<TOIE0);
-     //Encendemos
-      TCNT0 = 0xEC;
+
+	 TIMSK0 |= (1<<TOIE0);// Habilitación de interrupción de desbordamiento de temporizador/contador0
+     TCNT0 = 0xEC;//Iniciamos el valor del contador
 	 /*
 		Fint = Fcpu/(N*(Rcom-max + 1))
 		1 = 16MHz/(N*256)
 		N = 64 -> CS2 = 010
       * Fint = 975
 	*/
-	 TCCR0B |= (0<<CS00);	// 1
-	 TCCR0B |=  (1<<CS01);	// 0
-	 TCCR0B |= (0<<CS02);	// 1024
+     //Seleccionamos la fuente de reloj que utilizara el timer/counter
+	 TCCR0B |= (0<<CS00);	
+	 TCCR0B |=  (1<<CS01);	
+	 TCCR0B |= (0<<CS02);	
  }

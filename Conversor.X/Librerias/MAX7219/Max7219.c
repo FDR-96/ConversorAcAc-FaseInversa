@@ -21,8 +21,9 @@
 #define SEGDOT		0b10000000
 
 uint8_t chars={
-    SEGF|SEGE|SEGD|SEGC|SEGB           // v (looks like a U)
+    SEGF|SEGE|SEGD|SEGC|SEGB       // v (looks like a U)
     };
+
 char digitsInUse = 8;
 
 void MAX7219_init(){
@@ -85,7 +86,7 @@ void MAX7219_displayNumber(volatile long number)
     // does not work without it. Not sure why.
     char i = 0; 
    //  MAX7219_writeData(++i,0b00000011);
-                          
+     
     // Loop until number is 0.
     do {
       
@@ -93,5 +94,6 @@ void MAX7219_displayNumber(volatile long number)
         number /= 10;
 
     } while (number);
+
 
 }

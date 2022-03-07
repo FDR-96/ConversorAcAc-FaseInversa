@@ -87,7 +87,7 @@ void spiSendByte (char databyte);
 void MAX7219_writeData(char data_register, char data);
 void MAX7219_clearDisplay();
 void MAX7219_displayNumber(volatile long number);
-void MAX7219_displayNumberyMenu(volatile long number, int numero);
+
 //void MAX7219_Display_Text(char *text, int justify);
 
 
