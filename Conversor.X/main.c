@@ -105,30 +105,8 @@ ISR(TIMER1_CAPT_vect) {
      }else{
          opcion = 0;
          ADMUX  = 0b01000001;
-   }
-//     switch(opcion){
-//         case 0:
-//                ema_a1 = ((ALPHA*ADC)+((1-ALPHA)*ema_a1));
-//                tension_red  = (ema_a1* 240.65f)/1024.0f; ; 
-//                break;
-//         case 1:
-//                ema_a0 = ((ALPHA*ADC)+((1-ALPHA)*ema_a0));
-//                set_point = (ema_a0 * tension_red)/1024.0f; 
-//                ADMUX  = 0b01000001;
-//                opcion = opcion + 10; //desplazamiento
-//                break;
-//          case 11:
-//                ema_a1 = ((ALPHA*ADC)+((1-ALPHA)*ema_a1));
-//                tension_red  = (ema_a1* 240.65f)/1024.0f; ; 
-//                ADMUX  = 0b01000000;
-//                opcion = opcion - 10;
-//                break;
-//         default:
-//                opcion = 0;
-//                ADMUX  = 0b01000001;
-//                break;
-//     } 
-       ADCSRA |= (1<<ADIF);
+     }
+   //    ADCSRA |= (1<<ADIF);
  }
  ISR(USART_RX_vect){
     rx = UDR0;	
@@ -183,9 +161,8 @@ void main() {
                   
                     MostrarNumero(feedback, 1);
                     MostrarNumero(tension_red, 2);
-                    MostrarNumero(ton, 3);
-                    MostrarNumero(set_point, 4);
-                    MostrarNumero(angulo, 5);
+                    MostrarNumero(set_point, 3);
+                    MostrarNumero(angulo, 4);
                     MAX7219_displayNumber(feedback);
                     err = EEPROM_update(96, set_point);
                     seg = 0;
@@ -208,9 +185,6 @@ void MostrarNumero(uint16_t numero, uint8_t key){
                 _tx[0] = '%';
                 break;
         case 3:
-                _tx[0] =  '&';
-                break;
-        case 4:
                 _tx[0] = '@';
                 break;
         default:

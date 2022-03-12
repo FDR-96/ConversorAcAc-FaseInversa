@@ -20,22 +20,22 @@
 #define BAUD_RATE_115200_BPS  5 // 115.2k bps
 #define FOSC 16000000
 #define BAUD 9600
-#define MYUBRR FOSC/16/BAUD-1
+#define MYUBRR FOSC/16/BAUD-1 // modo normal
 void USART_init()
 {
     unsigned int ubrr = MYUBRR ;
     UBRR0H = ((unsigned int)ubrr>>8);
     UBRR0L = ((unsigned int)ubrr);  
-    UCSR0B = (1<<RXEN0)|(1<<TXEN0)|(1 << RXCIE0);;
-    UCSR0C = (1<<USBS0)|(3<<UCSZ00);
+    UCSR0B = (1<<RXEN0)|(1<<TXEN0)|(1 << RXCIE0);; //habilitamos el receptor y el trasmisor y habilitamos la interrupcion por recepcion completa 
+    UCSR0C = (1<<USBS0)|(2<<UCSZ00); //2bit stop, seleccionamos el tamaño del caracter que vamos a recibir, en nuestro caso  8bit
 
 }
 
 
 void USART_SetData(unsigned char Tx)
 {
-     while (!( UCSR0A & (1<<UDRE0)));
-     UDR0 = Tx;
+     while (!( UCSR0A & (1<<UDRE0))); //Esperamos a que sea 1, lo que significa que el registro esta libre para ser utilizado.
+     UDR0 = Tx; //cargamos el buffer o el registro en el que se almacena la informacion a ser trasmitida
      
 }
 
